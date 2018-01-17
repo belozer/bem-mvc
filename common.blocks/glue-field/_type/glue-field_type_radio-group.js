@@ -1,12 +1,12 @@
-modules.define('glue-field', ['i-bem__dom'], function(provide, BEMDOM) {
+modules.define('glue-field', ['radio-group'], function(provide, RadioGroup, GlueField) {
 
-provide(BEMDOM.decl({ block : 'glue-field', modName : 'type', modVal : 'radio-group' }, {
+provide(GlueField.declMod({ modName : 'type', modVal : 'radio-group' }, {
 
     onSetMod : {
         js : {
             inited : function() {
                 this.__base();
-                this.input = this.findBlockOn('radio-group');
+                this.input = this.findMixedBlock(RadioGroup);
             }
         }
     },

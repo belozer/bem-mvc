@@ -1,12 +1,12 @@
 modules.define(
     'glue',
-    ['i-bem__dom', 'i-bem__internal', 'objects', 'jquery', 'model'],
-    function(provide, BEMDOM, INTERNAL, objects, $, MODEL) {
+    ['i-bem-dom', 'i-bem__internal', 'objects', 'jquery', 'model', 'glue-field'],
+    function(provide, bemDom, INTERNAL, objects, $, MODEL, GlueField) {
 
 /**
  * Блок для проклеивания моделей и DOM
  */
-provide(BEMDOM.decl('glue', {
+provide(bemDom.declBlock(this.name, {
 
     onSetMod: {
         js: {
@@ -61,8 +61,8 @@ provide(BEMDOM.decl('glue', {
 
         this._fields = {};
 
-        this.findElem('model-field').each(function(i, elem) {
-            this.initFieldBlock($(elem));
+        this._elems('model-field').forEach(function(elem) {
+            this.initFieldBlock(elem);
         }.bind(this));
 
         return this;
@@ -70,27 +70,25 @@ provide(BEMDOM.decl('glue', {
 
     /**
      * Инициализируем блок glue-field (или его потомка) на BEM-блоке
-     * @param {jQuery} elem
+     * @param {Elem} elem
      * @returns {BEM}
      */
     initFieldBlock: function(elem) {
-        elem = this.elemify(elem, 'model-field'); // идентифицируем элемент для случая, когда на одной ноде несколько элементов
-
-        var elemParams = this.elemParams(elem) || {};
+        var elemParams = elem.params || {};
 
         if (!Array.isArray(elemParams))
             elemParams = [elemParams];
 
         elemParams.forEach(function(fieldParams) {
-            fieldParams.name || (fieldParams.name = this.getMod(elem, 'name'));
-            fieldParams.type || (fieldParams.type = this.getMod(elem, 'type'));
+            fieldParams.name || (fieldParams.name = elem.getMod('name'));
+            fieldParams.type || (fieldParams.type = elem.getMod('type'));
 
             var type = fieldParams.type,
-                cls = INTERNAL.buildClasses('glue-field', { type : type });
+                cls = INTERNAL.buildClassNames('glue-field', { type : type });
 
             // Миксуем блок glue-field
-            elem.addClass(cls);
-            var block = this.findBlockOn(elem, 'glue-field');
+            elem.domElem.addClass(cls);
+            var block = elem.findMixedBlock(GlueField);
             block.params = fieldParams; // Передавать параметры через атрибут накладно. Передаем их после инициализации
 
             this._fields[fieldParams.name] = block;

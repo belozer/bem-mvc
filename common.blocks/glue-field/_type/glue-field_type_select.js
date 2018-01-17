@@ -1,11 +1,11 @@
-modules.define('glue-field', ['i-bem__dom'], function(provide, BEMDOM) {
+modules.define('glue-field', ['select'], function(provide, Select, GlueField) {
 
-provide(BEMDOM.decl({ block: 'glue-field', modName : 'type', modVal : 'select' }, {
+provide(GlueField.declMod({ modName : 'type', modVal : 'select' }, {
     onSetMod: {
         js: {
             inited: function() {
                 this.__base();
-                this.select = this.findBlockOn('select');
+                this.select = this.findMixedBlock(Select);
             }
         }
     },

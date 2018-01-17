@@ -1,13 +1,13 @@
-modules.define('glue-field', ['i-bem__dom'], function(provide, BEMDOM) {
+modules.define('glue-field', ['checkbox'], function(provide, Checkbox, GlueField) {
 
-provide(BEMDOM.decl({ block: 'glue-field', modName : 'type', modVal : 'checkbox'}, {
+provide(GlueField.declMod({ modName : 'type', modVal : 'checkbox'}, {
 
     onSetMod: {
         js: {
             inited: function() {
                 this.__base();
 
-                this.checkbox = this.findBlockOn('checkbox');
+                this.checkbox = this.findMixedBlock(Checkbox);
             }
         }
     },

@@ -1,6 +1,6 @@
-modules.define('glue-field', ['i-bem__dom'], function(provide, BEMDOM) {
+modules.define('glue-field', ['i-bem-dom'], function(provide, bemDom) {
 
-provide(BEMDOM.decl('glue-field', {
+provide(bemDom.declBlock(this.name, {
 
     onSetMod: {
         js: {
