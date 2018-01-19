@@ -1,9 +1,9 @@
 modules.define(
-    'i-bem__dom',
+    'i-bem-dom',
     ['inherit', 'jquery'],
-    function(provide, inherit, $, DOM) {
+    function(provide, inherit, $, bemDom) {
 
-provide(inherit.self(DOM, {}, {
+provide(inherit.self(bemDom, {}, {
     init: function() {
         var nodes = $('.model');
 
