@@ -39,7 +39,7 @@ modules.define('glue-field', ['form-field'], function(provide, FormField, GlueFi
         },
 
         onFieldChange: function(e) {
-            this.ff.hasMod('focused') || this.ff.setVal(e.bemTarget.format());
+            this.ff.hasMod('focused') || this.ff.setVal(e.target.format());
         },
 
         onFieldError : function(e, err) {
