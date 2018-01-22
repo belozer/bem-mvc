@@ -12,7 +12,7 @@ modules.define('glue-field', ['form-field'], function(provide, FormField, GlueFi
         init: function() {
             this.__base.apply(this, arguments);
 
-            this.ff
+            this._events(this.ff)
                 .on('change', function() {
                     this.model.set(this.name, this.ff.getVal());
                 }, this)
@@ -39,7 +39,7 @@ modules.define('glue-field', ['form-field'], function(provide, FormField, GlueFi
         },
 
         onFieldChange: function(e) {
-            this.ff.hasMod('focused') || this.ff.setVal(e.target.format());
+            this.ff.hasMod('focused') || this.ff.setVal(e.bemTarget.format());
         },
 
         onFieldError : function(e, err) {

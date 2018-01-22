@@ -14,7 +14,7 @@ provide(GlueField.declMod({ modName : 'type', modVal : 'radio-group' }, {
     init: function() {
         this.__base.apply(this, arguments);
 
-        this.input
+        this._events(this.input)
             .on('change', function() {
                 this.model.set(this.name, this.input.getVal());
             }, this)

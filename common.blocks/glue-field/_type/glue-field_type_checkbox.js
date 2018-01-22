@@ -15,7 +15,9 @@ provide(GlueField.declMod({ modName : 'type', modVal : 'checkbox'}, {
     init: function() {
         this.__base.apply(this, arguments);
 
-        this.checkbox.on({ modName: 'checked', modVal: '*' }, function(e, data) {
+        this._events(this.checkbox).on({
+            modName: 'checked', modVal: '*'
+        }, function(e, data) {
             this.model.set(this.name, !!data.modVal);
         }, this);
     },

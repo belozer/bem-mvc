@@ -13,7 +13,7 @@ provide(GlueField.declMod({ modName : 'type', modVal : 'select' }, {
     init: function() {
         this.__base.apply(this, arguments);
 
-        this.select.on('change', function() {
+        this._events(this.select).on('change', function() {
             this.model.set(this.name, this.select.getVal());
         }, this);
     },

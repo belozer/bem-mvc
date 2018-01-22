@@ -14,7 +14,7 @@ modules.define('glue-field', ['textarea'], function(provide, Textarea, GlueField
         init: function() {
             this.__base.apply(this, arguments);
 
-            this.input
+            this._events(this.input)
                 .on('change', function() {
                     this.model.set(this.name, this.input.getVal());
                 }, this)
