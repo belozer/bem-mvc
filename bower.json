@@ -15,7 +15,7 @@
     "libs"
   ],
   "dependencies": {
-    "bem-components": "git://github.com/bem/bem-components.git#v2",
+    "bem-components": "git://github.com/bem/bem-components.git#v5",
     "bem-pr": "~0.12.0"
   }
 }
